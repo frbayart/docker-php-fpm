@@ -106,7 +106,7 @@ RUN curl -L https://github.com/DataDog/dd-trace-php/releases/latest/download/dat
 RUN php /tmp/datadog-setup.php --php-bin=all --enable-appsec --enable-profiling
 
 # Copy custom PHP configuration
-COPY conf/php.ini $PHP_INI_DIR
+COPY files/php.ini $PHP_INI_DIR
   
 WORKDIR /var/www/html
 
