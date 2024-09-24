@@ -43,16 +43,9 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Add MySQL APT repository and install MySQL 8 client
-RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb \
-    && DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.29-1_all.deb \
-    && apt-get update \
-    && apt-get install -y mysql-client \
-    && rm mysql-apt-config_0.8.29-1_all.deb
-
-# Add MySQL APT repository and install MySQL 8 client
-# RUN curl -sS https://repo.mysql.com/RPM-GPG-KEY-mysql-2023 | gpg --dearmor | tee /usr/share/keyrings/mysql-archive-keyring.gpg > /dev/null && \
-#     echo "deb [signed-by=/usr/share/keyrings/mysql-archive-keyring.gpg] https://repo.mysql.com/apt/debian/ bookworm mysql-8.0" | tee /etc/apt/sources.list.d/mysql.list && \
-#     apt-get update && apt-get install -y mysql-client
+RUN curl -sS https://repo.mysql.com/RPM-GPG-KEY-mysql-2023 | gpg --dearmor | tee /usr/share/keyrings/mysql-archive-keyring.gpg > /dev/null && \
+    echo "deb [signed-by=/usr/share/keyrings/mysql-archive-keyring.gpg] https://repo.mysql.com/apt/debian/ bookworm mysql-8.0" | tee /etc/apt/sources.list.d/mysql.list && \
+    apt-get update && apt-get install -y mysql-client
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
